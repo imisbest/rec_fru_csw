@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csw.dao.RecDao">
+    <select id="queryByName" resultType="Rec">
+       select * from rec where name=#{name} and uid=#{id}
+   </select>
+    <insert id="add">
+    insert into rec values(#{r.id},#{r.name},#{r.ccc},#{r.uid})
+</insert>
+    <update id="update">
+        update rec set ccc=#{r.ccc} where id=#{r.id}
+    </update>
+    <select id="queryByCCC" resultType="Rec">
+        select * from rec where uid =#{id} and ccc &gt; 15
+    </select>
+</mapper>

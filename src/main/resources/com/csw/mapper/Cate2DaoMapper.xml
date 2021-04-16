@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csw.dao.Cate2Dao">
+    <resultMap type="Cate2" id="xx">
+        <id column="c2id" property="id"/>
+        <result column="c2name" property="name"/>
+        <collection property="cate1" javaType="Cate1">
+            <id column="c1id" property="id"/>
+            <result column="c1name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryAll" resultMap="xx">
+      select c1.id as c1id,c1.name as c1name,
+      c2.id as c2id,c2.name as c2name
+      from cate1 c1,cate2 c2 where c2.cid=c1.id
+   </select>
+    <insert id="add">
+     insert into cate2 values(#{c.id},#{c.name},#{c.cid})
+  </insert>
+    <select id="findBy" resultType="Cate2">
+        select * from cate2 where cid=#{parentId}
+    </select>
+    <select id="queryByid" resultType="Cate2">
+        select * from cate2 where id=#{pid}
+    </select>
+</mapper>

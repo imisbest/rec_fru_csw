@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csw.dao.ListDao">
+    <select id="queryAll" resultType="Lis">
+     select * from list
+   </select>
+    <select id="queryAllByid" resultType="Lis">
+     select * from list where id=#{id}
+    </select>
+    <insert id="add">
+        insert into list values(#{l.id},#{l.name},#{l.price},#{l.count},
+        #{l.pic},#{l.category},#{l.path},#{l.nname});
+    </insert>
+    <update id="updateLis">
+        update list set name=#{l.name},price=#{l.price},category=#{l.category},
+            pic=#{l.pic},path=#{l.path},nname=#{l.nname}
+        where id=#{l.id}
+    </update>
+    <select id="query" resultType="Lis">
+        select * from list
+
+            where name  like concat('%',#{findall},'%')
+
+    </select>
+    <select id="queryByName" resultType="Lis">
+        select * from list where name=#{name}
+    </select>
+    <select id="query0" resultType="Lis">
+         select * from list
+    </select>
+</mapper>
